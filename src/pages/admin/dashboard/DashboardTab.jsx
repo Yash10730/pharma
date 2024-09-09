@@ -32,19 +32,19 @@ function DashboardTab() {
                     <Tabs defaultIndex={0} className=" " >
                         <TabList className="md:flex md:space-x-8 bg-  grid grid-cols-2 text-center gap-4   md:justify-center mb-10 ">
                             <Tab>
-                                <button type="button" className="font-medium border-b-2 hover:shadow-purple-700 border-purple-500 text-purple-500 rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]  px-5 py-1.5 text-center bg-[#605d5d12] ">
+                                <button type="button" className="font-medium rounded-lg text-xl shadow-xl hover:rounded-full transition-all duration-200 px-5 py-1.5 text-center bg-cyan-100">
                                     <div className="flex gap-2 items-center">
                                         <MdOutlineProductionQuantityLimits />Products</div> </button>
                             </Tab>
                             <Tab>
-                                <button type="button" className="font-medium border-b-2 border-pink-500 bg-[#605d5d12] text-pink-500  hover:shadow-pink-700  rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]    px-5 py-1.5 text-center ">
+                                <button type="button" className="font-medium rounded-lg text-xl shadow-xl hover:rounded-full transition-all duration-200 px-5 py-1.5 text-center bg-cyan-100">
                                     <div className="flex gap-2 items-center">
                                         <AiFillShopping /> Order
                                     </div>
                                 </button>
                             </Tab>
                             <Tab>
-                                <button type="button" className="font-medium border-b-2 border-green-500 bg-[#605d5d12] text-green-500 rounded-lg text-xl  hover:shadow-green-700 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]   px-5 py-1.5 text-center ">
+                                <button type="button" className="font-medium rounded-lg text-xl shadow-xl hover:rounded-full transition-all duration-200 px-5 py-1.5 text-center bg-cyan-100">
                                     <div className="flex gap-2 items-center">
                                         <FaUser /> Users
                                     </div>
@@ -54,7 +54,7 @@ function DashboardTab() {
                         {/* product  */}
                         <TabPanel>
                             <div className='  px-4 md:px-0 mb-16'>
-                                <h1 className=' text-center mb-5 text-3xl font-semibold underline' style={{ color: mode === 'dark' ? 'white' : '' }}>Product Details</h1>
+                                <h1 className=' text-center mb-5 text-3xl font-extrabold tracking-wide' style={{ color: mode === 'dark' ? 'white' : '' }}>Product Details</h1>
                                 <div className=" flex justify-end">
                                     <button
                                         onClick={add}
@@ -147,7 +147,7 @@ function DashboardTab() {
                         <TabPanel>
                             {/* <Order order={order} setOrder={setOrder} setLoading={setLoading} /> */}
                             <div className="relative overflow-x-auto mb-16">
-                                <h1 className=' text-center mb-5 text-3xl font-semibold underline' style={{ color: mode === 'dark' ? 'white' : '' }}>Order Details</h1>
+                                <h1 className=' text-center mb-5 text-3xl font-extrabold tracking-wide' style={{ color: mode === 'dark' ? 'white' : '' }}>Order Details</h1>
 
                                 {order.map((allorder,index)=>{
                                     return(<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400" >
@@ -242,7 +242,7 @@ function DashboardTab() {
                         <TabPanel>
                             {/* <User addressInfo={addressInfo} setAddressInfo={setAddressInfo} setLoading={setLoading} /> */}
                             <div className="relative overflow-x-auto mb-10">
-                                <h1 className=' text-center mb-5 text-3xl font-semibold underline' style={{ color: mode === 'dark' ? 'white' : '' }}>User Details</h1>
+                                <h1 className=' text-center mb-5 text-3xl font-extrabold tracking-wide' style={{ color: mode === 'dark' ? 'white' : '' }}>User Details</h1>
                                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                     <thead className="text-xs text-black uppercase bg-gray-200 " style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                         <tr>

@@ -1,12 +1,13 @@
 import React, { Fragment, useContext, useState } from 'react'
 import myContext from '../../context/data/myContext';
-import { BsFillCloudSunFill } from 'react-icons/bs'
+import {IoMoonSharp} from "react-icons/io5"
 import { FiSun } from 'react-icons/fi'
 import { Link } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react'
 import { RxCross2 } from 'react-icons/rx'
 import { useSelector } from 'react-redux';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Navbar() {
   const context = useContext(myContext);
   const {mode, toggleMode} = context;
@@ -19,9 +20,16 @@ function Navbar() {
 
   const logout = () => {
     localStorage.clear('user');
-    window.location.href = '/login'
-  }
 
+    // Display the "Logout Successful" popup
+    toast.success('Logout Successful!', {
+      position: 'top-center',
+      autoClose: 3000, // Close the popup after 3 seconds
+    });
+
+    // Redirect to login page after logout
+    window.location.href = '/login';
+  };
   const cartItems = useSelector((state) => state.cart)
 
   return (
@@ -73,7 +81,7 @@ function Navbar() {
                     </Link>
                   </div> : ""}
 
-                  {user?.user?.email === "knupadhyay784@gmail.com" ? <div className="flow-root">
+                  {user?.user?.email === "ankan.hazra1710@gmail.com" ? <div className="flow-root">
                     <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
                       admin
                     </Link>
@@ -88,13 +96,6 @@ function Navbar() {
                       Signup
                     </Link>
                   </div>}
-                  <div className="flow-root">
-                    <Link to={'/'} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer">
-                      <img
-                        className="inline-block w-10 h-10 rounded-full"
-                        src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
-                        alt="Dan_Abromov" />                                        </Link>
-                  </div>
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
@@ -156,7 +157,7 @@ function Navbar() {
                       Signup
                     </Link>}
 
-                  {user?.user?.email === 'knupadhyay784@gmail.com' ? 
+                  {user?.user?.email === 'ankan.hazra1710@gmail.com' ? 
                    <Link to={'/dashboard'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Admin
                   </Link> : ""}
@@ -177,21 +178,12 @@ function Navbar() {
                     <span className="ml-3 block text-sm font-medium" style={{ color: mode === 'dark' ? 'white' : '', }}>INDIA</span>
                   </a>
                 </div>
-                <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700 ">
-                    <img
-                      className="inline-block w-10 h-10 rounded-full"
-                      src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
-                      alt="Dan_Abromov" />
-                  </a>
-                </div>
-
                 <div className="flex lg:ml-6">
                   <button className='' onClick={toggleMode}>
                     {mode === 'light' ?
-                      (<FiSun className='' size={30} />
+                      (<IoMoonSharp className='' size={30} />
                       ) : 'dark' ?
-                        (<BsFillCloudSunFill size={30} />
+                        (<FiSun size={30} />
                         ) : ''}
                   </button>
                 </div>

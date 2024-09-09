@@ -7,6 +7,7 @@ function Order() {
   const userid = JSON.parse(localStorage.getItem('user')).user.uid
   const context = useContext(myContext)
   const { mode, loading, order } = context
+  console.log(order)
   return (
     <Layout>
       {loading && <Loader />}
@@ -15,7 +16,9 @@ function Order() {
           <div className=" h-full pt-10">
             {
               order.filter(obj => obj.userid == userid).map((order) => {
-                // order.cartItems.map()
+                // order.cartItems.map((item) => {
+
+                // })
                 return (
                   <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
                     {
@@ -44,7 +47,7 @@ function Order() {
         </>)
         :
         (
-          <h2 className=' text-center tex-2xl text-white'>Not Order</h2>
+          <h2 className=' text-center tex-2xl text-blue-600'>Not Order</h2>
         )
 
       }

@@ -21,7 +21,7 @@ function Home() {
         </Link>
       </div>
       <Track />
-      <Testimonial />
+      {/* <Testimonial /> */}
     </Layout>
   )
 }

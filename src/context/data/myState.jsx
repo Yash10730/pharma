@@ -142,13 +142,15 @@ function myState(props) {
         setLoading(true)
         try {
             const result = await getDocs(collection(fireDB, "order"))
+            //console.log("Printing result: ", result)
+
             const ordersArray = [];
             result.forEach((doc) => {
                 ordersArray.push(doc.data());
                 setLoading(false)
             });
             setOrder(ordersArray);
-            console.log(ordersArray)
+            //console.log(ordersArray)
             setLoading(false);
         } catch (error) {
             console.log(error)
@@ -168,10 +170,10 @@ function myState(props) {
                 setLoading(false)
             });
             setUser(usersArray);
-            console.log(usersArray)
+           // console.log(usersArray)
             setLoading(false);
         } catch (error) {
-            console.log(error)
+            //console.log(error)
             setLoading(false)
         }
     }

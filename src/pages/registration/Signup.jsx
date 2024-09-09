@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import myContext from '../../context/data/myContext';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -15,46 +15,52 @@ function Signup() {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
 
+    const navigate = useNavigate();
+
     const signup = async () => {
-        setLoading(true)
+        setLoading(true);
         if (name === "" || email === "" || password === "") {
-            return toast.error("All fields are required")
+            toast.error("All fields are required");
+            setLoading(false);
+            return;
         }
 
         try {
             const users = await createUserWithEmailAndPassword(auth, email, password);
 
-            // console.log(users)
-
             const user = {
                 name: name,
                 uid: users.user.uid,
                 email: users.user.email,
-                time : Timestamp.now()
-            }
-            const userRef = collection(fireDB, "users")
+                time: Timestamp.now()
+            };
+
+            const userRef = collection(fireDB, "users");
             await addDoc(userRef, user);
-            toast.success("Signup Succesfully")
+
+            toast.success("Signup Successfully");
             setName("");
             setEmail("");
             setPassword("");
-            setLoading(false)
-            
+            setLoading(false);
+            navigate('/login'); // Redirect to login after successful signup
         } catch (error) {
-            console.log(error)
-            setLoading(false)
+            console.log(error);
+            toast.error("Error during signup. Please try again.");
+            setLoading(false);
         }
-    }
+    };
 
     return (
         <div className=' flex justify-center items-center h-screen'>
-            {loading && <Loader/>}
+            {loading && <Loader />}
             <div className=' bg-gray-800 px-10 py-10 rounded-xl '>
                 <div className="">
                     <h1 className='text-center text-white text-xl mb-4 font-bold'>Signup</h1>
                 </div>
                 <div>
-                    <input type="text"
+                    <input
+                        type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         name='name'
@@ -64,7 +70,8 @@ function Signup() {
                 </div>
 
                 <div>
-                    <input type="email"
+                    <input
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         name='email'
@@ -93,7 +100,7 @@ function Signup() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Signup
+export default Signup;
